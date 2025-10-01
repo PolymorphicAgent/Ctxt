@@ -1,14 +1,17 @@
 #include "ctxt.h"
-#include <string>
-ST subSpaces(ST st){
+
+#include<iostream>
+#include<cctype>
+
+std::string subSpaces(std::string st){
     for(int i=0;i<st.size();i++){
         if((char)st[i]==' '){
             st[i]='_';
         }
     }
-    R st;
+    return st;
 }
-void ctxt(ST s,const int textcolor,bool bold, bool underline,bool nlne){
+void ctxt(std::string s,const int textcolor,bool bold, bool underline,bool nlne){
     int backgroundcolor;
     if(underline)s=subSpaces(s);
 #if defined(_WIN32)
@@ -17,7 +20,7 @@ void ctxt(ST s,const int textcolor,bool bold, bool underline,bool nlne){
     if(GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),&csbi))default_colors=csbi.wAttributes;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),black<<4|textcolor);
 #elif defined(__linux__)
-    ST t,b;
+    std::string t,b;
     switch(textcolor) {
         case  0: t="30";break;//black      0
         case  1: t="34";break;//dark_blue  1
@@ -57,18 +60,86 @@ void ctxt(ST s,const int textcolor,bool bold, bool underline,bool nlne){
         default: b= "40";
     }
     if(bold==false){
-        if(underline==false)O<<"\033["+t+";"+b+"m";
-        else O<<"\033["+t+";"+b+";4"+"m";
+        if(underline==false)std::cout<<"\033["+t+";"+b+"m";
+        else std::cout<<"\033["+t+";"+b+";4"+"m";
     }
     else{
-        if(underline==false)O<<"\033[1;"+t+";"+b+"m";
-        else O<<"\033[1;"+t+";"+b+";4"+"m";
+        if(underline==false)std::cout<<"\033[1;"+t+";"+b+"m";
+        else std::cout<<"\033[1;"+t+";"+b+";4"+"m";
     }
 #endif
-    O<<s;if(nlne==true)O<<"\n";
+    std::cout<<s;if(nlne==true)std::cout<<"\n";
 #if defined(_WIN32)
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),default_colors);
 #elif defined(__linux__)
-    O<<"\033[0;24m";//reset color
+    std::cout<<"\033[0;24m";//reset color
 #endif
 }
+
+void demo(){
+    ctxt("This is black text on black background",black,false,false,true);
+    ctxt("This is dark blue text on black background",dark_blue,false,false,true);
+    ctxt("This is dark green text on black background",dark_green,false,false,true);
+    ctxt("This is light blue text on black background",light_blue,false,false,true);
+    ctxt("This is dark red text on black background",dark_red,false,false,true);
+    ctxt("This is magenta text on black background",magenta,false,false,true);
+    ctxt("This is orange text on black background",orange,false,false,true);
+    ctxt("This is light gray text on black background",light_gray,false,false,true);
+    ctxt("This is gray text on black background",gray,false,false,true);
+    ctxt("This is blue text on black background",blue,false,false,true);
+    ctxt("This is green text on black background",green,false,false,true);
+    ctxt("This is cyan text on black background",cyan,false,false,true);
+    ctxt("This is red text on black background",red,false,false,true);
+    ctxt("This is pink text on black background",pink,false,false,true);
+    ctxt("This is yellow text on black background",yellow,false,false,true);
+    ctxt("This is white text on black background",white,false,false,true);
+
+    ctxt("This is bold black text on black background",black,true,false,true);
+    ctxt("This is bold dark blue text on black background",dark_blue,true,false,true);
+    ctxt("This is bold dark green text on black background",dark_green,true,false,true);
+    ctxt("This is bold light blue text on black background",light_blue,true,false,true);
+    ctxt("This is bold dark red text on black background",dark_red,true,false,true);
+    ctxt("This is bold magenta text on black background",magenta,true,false,true);
+    ctxt("This is bold orange text on black background",orange,true,false,true);
+    ctxt("This is bold light gray text on black background",light_gray,true,false,true);
+    ctxt("This is bold gray text on black background",gray,true,false,true);
+    ctxt("This is bold blue text on black background",blue,true,false,true);
+    ctxt("This is bold green text on black background",green,true,false,true);
+    ctxt("This is bold cyan text on black background",cyan,true,false,true);
+    ctxt("This is bold red text on black background",red,true,false,true);
+    ctxt("This is bold pink text on black background",pink,true,false,true);
+    ctxt("This is bold yellow text on black background",yellow,true,false,true);
+    ctxt("This is bold white text on black background",white,true,false,true);
+    ctxt("This is underlined black text on black background",black,false,true,true);
+    ctxt("This is underlined dark blue text on black background",dark_blue,false,true,true);
+    ctxt("This is underlined dark green text on black background",dark_green,false,true,true);
+    ctxt("This is underlined light blue text on black background",light_blue,false,true,true);
+    ctxt("This is underlined dark red text on black background",dark_red,false,true,true);
+    ctxt("This is underlined magenta text on black background",magenta,false,true,true);
+    ctxt("This is underlined orange text on black background",orange,false,true,true);
+    ctxt("This is underlined light gray text on black background",light_gray,false,true,true);
+    ctxt("This is underlined gray text on black background",gray,false,true,true);
+    ctxt("This is underlined blue text on black background",blue,false,true,true);
+    ctxt("This is underlined green text on black background",green,false,true,true);
+    ctxt("This is underlined cyan text on black background",cyan,false,true,true);
+    ctxt("This is underlined red text on black background",red,false,true,true);
+    ctxt("This is underlined pink text on black background",pink,false,true,true);
+    ctxt("This is underlined yellow text on black background",yellow,false,true,true);
+    ctxt("This is underlined white text on black background",white,false,true,true);
+    ctxt("This is bold and underlined black text on black background",black,true,true,true);
+    ctxt("This is bold and underlined dark blue text on black background",dark_blue,true,true,true);
+    ctxt("This is bold and underlined dark green text on black background",dark_green,true,true,true);
+    ctxt("This is bold and underlined light blue text on black background",light_blue,true,true,true);
+    ctxt("This is bold and underlined dark red text on black background",dark_red,true,true,true);
+    ctxt("This is bold and underlined magenta text on black background",magenta,true,true,true);
+    ctxt("This is bold and underlined orange text on black background",orange,true,true,true);
+    ctxt("This is bold and underlined light gray text on black background",light_gray,true,true,true);
+    ctxt("This is bold and underlined gray text on black background",gray,true,true,true);
+    ctxt("This is bold and underlined blue text on black background",blue,true,true,true);
+    ctxt("This is bold and underlined green text on black background",green,true,true,true);
+    ctxt("This is bold and underlined cyan text on black background",cyan,true,true,true);
+    ctxt("This is bold and underlined red text on black background",red,true,true,true);
+    ctxt("This is bold and underlined pink text on black background",pink,true,true,true);
+    ctxt("This is bold and underlined yellow text on black background",yellow,true,true,true);
+    ctxt("This is bold and underlined white text on black background",white,true,true,true);
+    std::cout<<"\n";}
