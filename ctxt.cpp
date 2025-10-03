@@ -4,7 +4,7 @@
 #include<cctype>
 
 std::string subSpaces(std::string st){
-    for(int i=0;i<st.size();i++){
+    for(unsigned int i=0;i<st.size();i++){
         if((char)st[i]==' '){
             st[i]='_';
         }
@@ -74,6 +74,8 @@ void ctxt(std::string s,const int textcolor,bool bold, bool underline,bool nlne)
 #elif defined(__linux__)
     std::cout<<"\033[0;24m";//reset color
 #endif
+bold = bold ? true : false; //prevent compiler warnings :)
+backgroundcolor = 0; //prevent compiler warnings :)
 }
 
 void demo(){
