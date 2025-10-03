@@ -75,7 +75,7 @@ void ctxt(std::string s,const int textcolor,bool bold, bool underline,bool nlne)
     std::cout<<"\033[0;24m";//reset color
 #endif
 bold = bold ? true : false; //prevent compiler warnings :)
-backgroundcolor = backgroundColor == 2 ? backgroundColor: 0; //prevent compiler warnings :)
+backgroundColor = backgroundColor == 2 ? backgroundColor: 0; //prevent compiler warnings :)
 }
 
 void demo(){
